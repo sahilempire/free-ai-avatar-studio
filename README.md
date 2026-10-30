@@ -30,6 +30,8 @@ Linux machine.
 - **One `project.json`, word-anchored:** every time is written as a word ("B-roll starts at *Indian*"), so a
   re-recorded voice-over re-times the whole edit.
 
+**Kaggle notebooks:** [Fast Lip Sync](https://www.kaggle.com/code/sahilempire/free-ai-avatar-studio-fast-lip-sync) · [Realistic Lip Sync](https://www.kaggle.com/code/sahilempire/free-ai-avatar-studio-realistic-lip-sync). Open one, click **Copy & Edit**, and add your kit as input.
+
 ## How it works
 
 ```
