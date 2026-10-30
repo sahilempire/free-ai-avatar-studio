@@ -1,0 +1,101 @@
+{
+  "name": "cab-fare",
+  "voiceover": "assets/voiceover.wav",
+  "size": [1080, 1920],
+  "fps": 30,
+  "tail": 0.7,
+
+  "brand": {
+    "accent": "#C8102E",
+    "highlight": "#D4AF37",
+    "ink": "#0E0E10",
+    "watermark": "byte.talk",
+    "follow": "Follow @byte.talk"
+  },
+  "ai_disclosure": {"enabled": true, "text": "AI-generated host", "seconds": 3},
+
+  "scenes": [
+    {"id": "street", "image": "assets/scene_street.png", "grade": "night_neon", "ambience": "street",
+     "prompt": "Handheld phone video at night on a busy city street. A young woman in a red top holds two phones steadily at chest height and talks to the camera. She blinks naturally, glances down at the phones and back up, raises one eyebrow, small head tilts. Cars pass with moving headlights, neon signs flicker, people walk by. Realistic skin, natural light, slight camera shake, the phones stay in her hands."},
+    {"id": "cab", "image": "assets/scene_cab.png", "start": {"word": "Maamla", "offset": -0.2}, "grade": "daylight", "vibration": true, "ambience": "cab",
+     "prompt": "Handheld phone video in the back seat of a moving cab. A young woman in a red top holds her phone in her lap and talks to the camera, confident and friendly. She blinks naturally, glances out of the window and back, gentle nods. City buildings slide past the window, soft daylight, slight road vibration. Realistic skin, her hands stay steady."},
+    {"id": "studio", "image": "assets/scene_studio.png", "start": {"word": "September", "offset": -0.25}, "grade": "studio_red_rim",
+     "prompt": "Phone video in a warm, softly lit studio. A young woman in a red top faces the camera with a serious, concerned expression. She blinks naturally, slight head tilts, hands relaxed and still. Warm bokeh lights flicker gently, a faint red rim light. Realistic skin, slight handheld movement."},
+    {"id": "roadside", "image": "assets/scene_roadside.png", "start": {"word": "Logic", "offset": -0.24}, "grade": "golden_hour", "ambience": "street",
+     "prompt": "Handheld phone video at golden hour on a city roadside. A young woman in a red top talks to the camera with a bright, warm smile. She blinks naturally, small head tilts, a playful glance to the side. Taxis drive past behind her, warm sunlight. Realistic skin, slight camera shake, her hands stay steady."}
+  ],
+
+  "script": {
+    "language": "hin",
+    "lines": [
+      "[iPhone|aai phone] hai? Toh shayad aap cab ke liye extra pay kar rahe ho… ya nahi?",
+      "Internet par screenshots viral hue. Same ride, same time… [iPhone|aai phone] par fare zyada, Android par kam.",
+      "Maamla itna bada hua ki January [2025|do hazaar pachchees] mein government ne Ola aur Uber ko notice bhej diya.",
+      "Dono ne saaf bola: hum phone dekhkar price set nahi karte.",
+      "Ab clue dekho. Indian Express ne khud test kiya… kai baar [iPhone|aai phone] mehenga nikla, lekin kai baar Android!",
+      "Kyunki fare dynamic hai. Time, traffic, demand… do second mein bhi price badal jaata hai.",
+      "Toh phone waala proof abhi tak nahi mila. Real trap kahin aur hai.",
+      "September [2026|do hazaar chhabbees] mein Rapido par [₹10 lakh|das lakh] ka fine laga.",
+      "Booking ke baad pressure: 'Driver nahi mil raha, [+₹20|plus twenty] add karo.'",
+      "Logic simple hai: algorithm aapki jaldi ko padhta hai, phone ko nahi.",
+      "Do apps compare karo, ek minute ruk ke refresh karo. Case closed. Agla case? Comment karo."
+    ],
+    "key_words": ["iphone", "android", "dynamic", "notice", "₹10 lakh", "fine", "algorithm", "case closed"]
+  },
+
+  "captions": {"font": "Montserrat-ExtraBold", "size": 82, "y_center": 1190, "max_words": 4, "backdrop_opacity": 0.7},
+  "pip": {"size": 300, "x": 44, "y": 1236},
+
+  "broll": {
+    "module": "broll.py",
+    "pieces": [
+      {"id": "B1_split_phones", "from": 7.73, "to": {"scene": "cab"},
+       "events": {"iphone_fare": {"word": "iPhone", "nth": 2}, "android_fare": {"word": "Android"}, "question_stamp": {"word": "kam"}}},
+      {"id": "B2_news_card", "from": {"scene": "cab"}, "to": 17.95, "alpha": true, "blur_under": true,
+       "events": {"card_in": {"scene": "cab", "offset": 0.15}, "notice_word": {"word": "notice"}}},
+      {"id": "B3_results_board", "from": {"word": "Indian", "offset": -0.1}, "to": {"word": "Kyunki", "offset": -0.15},
+       "events": {"row1": {"word": "Indian", "offset": 0.3}, "row2": {"word": "kai"}, "iphone_costlier": {"word": "iPhone", "nth": 3},
+                  "row3": {"word": "lekin"}, "android_costlier": {"word": "Android", "nth": 2}}},
+      {"id": "B4_dynamic_fare", "from": {"word": "Kyunki", "offset": -0.15}, "to": {"word": "hai", "nth": 3, "edge": "end", "offset": 0.3},
+       "events": {"fare_240": {"word": "dynamic"}, "fare_265": {"word": "Time"}, "fare_251": {"word": "traffic"},
+                  "fare_289": {"word": "demand"}, "two_seconds": {"word": "second"}}},
+      {"id": "B5_dark_pattern", "from": {"word": "Booking", "offset": -0.1}, "to": {"scene": "roadside"},
+       "events": {"popup_in": {"word": "Booking", "offset": 0.2}, "searching": {"word": "pressure"},
+                  "driver_text": {"word": "Driver"}, "plus20_click": {"word": "+₹20"}}},
+      {"id": "B7_logic", "from": {"scene": "roadside"}, "to": {"word": "nahi", "nth": 5, "edge": "end", "offset": 0.08},
+       "events": {"logic": {"word": "Logic"}, "algorithm": {"word": "algorithm"}, "jaldi": {"word": "jaldi"}, "phone": {"word": "phone", "nth": 3}}},
+      {"id": "B6_tip_card", "from": {"word": "nahi", "nth": 5, "edge": "end", "offset": 0.08}, "to": {"word": "karo", "nth": 3, "edge": "end", "offset": 0.12},
+       "events": {"two_apps": {"word": "nahi", "nth": 5, "edge": "end", "offset": 0.45}, "compare": {"word": "compare"},
+                  "timer_start": {"word": "ek"}, "refresh": {"word": "refresh"}}}
+    ],
+    "overlays": [
+      {"id": "L1_deny_lower_third", "from": {"word": "Dono", "offset": -0.05}, "to": {"word": "karte", "edge": "end", "offset": 0.3}},
+      {"id": "S1_fine_stamp", "from": {"word": "₹10 lakh"}, "to": {"word": "Booking", "offset": -0.1}}
+    ]
+  },
+
+  "punch_ins": [
+    {"label": "ya nahi?", "from": {"word": "ya"}, "to": {"word": "nahi", "edge": "end", "offset": 0.25}},
+    {"label": "Ab clue dekho", "from": {"word": "Ab"}, "to": {"word": "dekho", "edge": "end", "offset": 0.15}},
+    {"label": "₹10 lakh ka fine", "from": {"word": "₹10 lakh"}, "to": {"word": "laga", "edge": "end", "offset": 0.2}},
+    {"label": "Case closed", "from": {"word": "Case"}, "to": {"word": "closed", "edge": "end", "offset": 0.2}}
+  ],
+
+  "sfx": [
+    {"at": {"word": "Dono", "offset": -0.05}, "kind": "whoosh_soft"},
+    {"at": {"event": "B1_split_phones.iphone_fare", "offset": 0.6}, "kind": "kaching"},
+    {"at": {"event": "B1_split_phones.android_fare", "offset": 0.6}, "kind": "kaching"},
+    {"at": {"word": "Time"}, "kind": "tick"},
+    {"at": {"word": "traffic"}, "kind": "tick"},
+    {"at": {"word": "demand"}, "kind": "kaching"},
+    {"at": {"word": "₹10 lakh"}, "kind": "thud"},
+    {"at": {"word": "Driver"}, "kind": "click"},
+    {"at": {"word": "+₹20"}, "kind": "click"},
+    {"at": {"word": "jaldi", "offset": 0.35}, "kind": "tick"},
+    {"at": {"word": "phone", "nth": 3, "offset": 0.2}, "kind": "thud"},
+    {"at": {"word": "refresh"}, "kind": "click"}
+  ],
+  "music": {"bpm": 92, "drop_before": {"word": "Real"}, "drop_seconds": 0.4},
+  "freeze": {"from": {"word": "Comment"}, "hold_after": 0.75},
+  "cover": {"time": 1.4, "lines": [["IPHONE PE CAB", "white"], ["MEHENGA?", "accent"]], "pill": "VIRAL CLAIM, CHECKED"}
+}

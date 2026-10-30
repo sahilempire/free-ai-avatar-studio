@@ -1,0 +1,16 @@
+# your assets and outputs stay local
+**/assets/
+**/work/
+**/out/
+*.mp4
+*.mov
+*.wav
+*.zip
+# downloaded by setup.sh
+vendor/
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+*.egg-info/
+.pytest_cache/

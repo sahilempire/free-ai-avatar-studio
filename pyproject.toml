@@ -1,0 +1,24 @@
+[project]
+name = "free-ai-avatar-studio"
+version = "0.1.0"
+description = "Talking-character reels (lip sync, captions, B-roll, sound) from one image and a voice-over, on free Kaggle GPUs"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+  "numpy", "pillow", "opencv-python>=4.10", "pycairo", "soundfile", "librosa", "pyloudnorm", "scipy",
+  "ctc-forced-aligner", "unidecode",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.scripts]
+studio = "studio.__main__:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["studio"]
